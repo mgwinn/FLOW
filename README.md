@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>FLOW</title>
+   <title>FLOW Game</title>
    <hr>
    <applet code = "DragonTrainersTest.class" width = "320" height = "120">
 
