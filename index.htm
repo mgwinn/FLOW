@@ -20,6 +20,7 @@
 
 	//random variables
 	playerChoice = 0;
+	win = 0;
 
 	//player stats
 	health = 30;
@@ -72,7 +73,6 @@
 					break;
 			}
 			$.delay(200);
-			
 		}
 
 	}
@@ -106,20 +106,30 @@
 
 	function battleAttack1(enemyHealth, attack1) {
 		enemyHealth = enemyHealth - attack1;
-		document.getElementById("test2").innerHTML = "The enemy has " + enemyHealth + " health left.";
+		document.getElementById("test").innerHTML = "The enemy has " + enemyHealth + " health left.";
+
+		if (enemyHealth <= 0)   {
+			win = win + 1;
+		}
+
 		return health;
 	}
 
 	function battleAttack2(enemyHealth, attack2) {
 		enemyHealth = enemyHealth - attack2;
-		document.getElementById("test3").innerHTML = "The enemy has " + enemyHealth + " health left.";
+		document.getElementById("test").innerHTML = "The enemy has " + enemyHealth + " health left.";
+
+		if (enemyHealth <= 0)   {
+			win = win + 1;
+		}
+
 		return health;
 	}
 
 	function battleHeal(health, heal) {
 		alert("test");
 		health = health + heal;
-		document.getElementById("test1").innerHTML = "Your health is now: " + health;
+		document.getElementById("test").innerHTML = "Your health is now: " + health;
 		return health;
 	}
 
@@ -176,9 +186,7 @@
 
 </div>
 
-<p id="test1"></p>
-<p id="test2"></p>
-<p id="test3"></p>
+<p id="test"></p>
 
 <hr>
 </html>
