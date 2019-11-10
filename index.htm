@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+</head>
+
+<script>
+	function backgroundScript() {
+
+		document.getElementById("background").innerHTML = "The year is 2019, and Tim Burr suits up for a long day of work. For he is the protector of all within the Watershed. Tim is the latest in the long line of protectors. He knew that he would one day pick up the mantle of Protector from the moment he was born. For the Burr family has protected the Watershed since its creation.";
+
+		document.getElementById("watershedBackground").innerHTML = "The Watershed is a sacred place, for it houses the most prestigious houses, the best job opportunities, and boasts the lowest utilities prices. The people within the Watershed are kind souls, and it's said that the people within the Watershed never get sick, and have reduced stress levels.";
+
+		document.getElementById("villianSetup").innerHTML = "It is because of this evil goers try to harm the Watershed. They are jealous of what the Watershed holds, and wish to take it for themselves. These outsiders come in waves. They come bearing bacteria to pollute the water, and even fire to burn down the green life.";
+
+		document.getElementById("attackSetup").innerHTML = "Tim wakes up bright and early for the day, but he doesn't get to rest for long as he notices an enemy approches! Think fast! What will you do?";
+
+	}
+
+	//random variables
+	playerChoice = 0;
+
+	//player stats
+	health = 30;
+	heal = 5;
+	attack1 = 5;
+	attack2 = 10;
+
+	//enemy stats
+
+	enemyHealth = 20;
+	enemyAttack = 5;
+	enemyHeal = 5;
+
+	function battleButtons() {
+		document.getElementById("background").innerHTML = "The year is 2019, and Tim Burr suits up for a long day of work. For he is the protector of all within the Watershed. Tim is the latest in the long line of protectors. He knew that he would one day pick up the mantle of Protector from the moment he was born. For the Burr family has protected the Watershed since its creation.";
+
+		document.getElementById("watershedBackground").innerHTML = "The Watershed is a sacred place, for it houses the most prestigious houses, the best job opportunities, and boasts the lowest utilities prices. The people within the Watershed are kind souls, and it's said that the people within the Watershed never get sick, and have reduced stress levels.";
+
+		document.getElementById("villianSetup").innerHTML = "It is because of this evil goers try to harm the Watershed. They are jealous of what the Watershed holds, and wish to take it for themselves. These outsiders come in waves. They come bearing bacteria to pollute the water, and even fire to burn down the green life.";
+
+		document.getElementById("attackSetup").innerHTML = "Tim wakes up bright and early for the day, but he doesn't get to rest for long as he notices an enemy approches! Think fast! What will you do?";
+		
+		state = 0;
+
+		//randomizer would go here
+
+		document.getElementById("Attack1").style.display = "block";
+		document.getElementById("Attack2").style.display = "block";
+		document.getElementById("Heal").style.display = "block";
+		
+			
+					
+			waitFor(gameLoop);
+			
+		
+
+	}
+
+	function waitFor(func){
+		setTimeout(func, 10);
+	}
+	//main loop, battle phases go here
+	function gameLoop(){	
+				switch (state) {
+					case 0:
+						playerGo();
+						break;
+					case 1:
+						alert("enemies turn");
+						state++;
+					default:
+						state = 0;						
+						break;
+				}
+				//if health is above 0 go again
+				if(health > 0){
+				//this is recursive, do not touch
+					waitFor(gameLoop);
+				}else{
+					//youre dead
+				}					
+	}
+	//player choices go here
+	function playerGo() {
+		
+		switch (playerChoice) {
+			case 0:
+
+				break;
+
+			case 1:
+				alert("You chose attack 1");
+				enemyHealth = battleAttack1(enemyHealth, attack1);
+				state++;
+				playerChoice = 0;
+				break;
+
+			case 2:
+				alert("You chose attack 2");
+				enemyHealth = battleAttack2(enemyHealth, attack2);
+				state++;
+				playerChoice = 0;
+
+				break;
+
+			case 3:
+				alert("You chose heal");
+				health = battleHeal(health, heal);
+				state++;
+				playerChoice = 0;
+				break;
+			default:
+				state = 0;
+				break;
+		}
+
+	}
+
+	function battleAttack1(enemyHealth, attack1) {
+		enemyHealth = enemyHealth - attack1;
+		document.getElementById("test").innerHTML = "The enemy has " + enemyHealth + " health left.";
+		return enemyHealth;
+	}
+
+	function battleAttack2(enemyHealth, attack2) {
+		enemyHealth = enemyHealth - attack2;
+		document.getElementById("test").innerHTML = "The enemy has " + enemyHealth + " health left.";
+		return enemyHealth;
+	}
+
+	function battleHeal(health, heal) {
+		health = health + heal;
+		document.getElementById("test").innerHTML = "Your health is now: " + health;
+		return health;
+	}
+
+</script>
+
+<title>The Watershed Warrior</title>
+<hr>
+
+<h1>The Watershed Warrior</h1>
+
+<p>Created by: Madison Gwinn</p>
+<p>Sponsored by: FLOW</p>
+<img src="grow-with-the-flow.jpg" width="600" height="150">
+
+<p>How long can you last? Play this adventure game and try to defeat as many enemies as possible! </p>
+<p>In this game you will play as Tim Burr, and fight against the evil Dr. Paul U. Shien to protect the Watershed.</p>
+
+<h2>How To Play:</h2>
+
+<p><br /></p>
+<p>The battle feature runs on a turn based attacking/defending style of play. You will be able to choose which attack
+	you would like to use, and then watch to see the outcome.</p>
+<p><br /></p>
+
+<hr>
+
+<p>Are you ready? Press the button to begin...</p>
+
+<button onclick="battleButtons()">Play the Game</button>
+
+<p id="background"></p>
+<p><br /></p>
+<p id="watershedBackground"></p>
+<p><br /></p>
+<p id="villianSetup"></p>
+<p><br /></p>
+<p id="attackSetup"></p>
+<p><br /></p>
+
+
+<div class="buttons">
+
+	<button type="button" class="regular" name="Attack1" id="Attack1" onclick="playerChoice = 1" style="display:none;">
+		Attack1
+	</button>
+
+	<button type="button" class="regular" name="Attack2" id="Attack2" onclick="playerChoice = 2" style="display:none;">
+		Attack2
+	</button>
+
+	<button type="button" class="regular" name="Heal" id="Heal" onclick="playerChoice = 3" style="display:none;">
+		Heal
+	</button>
+
+</div>
+
+<p id="test"></p>
+
+<hr>
+</html>
