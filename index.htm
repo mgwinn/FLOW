@@ -96,8 +96,8 @@
 				enemyHealth = battleAttack1(enemyHealth, attack1);
 
 				if (enemyHealth <= 0)   {
-					enemyDead(win);
-					newEnemy(enemyHealth, win);				}
+					win = enemyDead(win);
+					enemyHealth = newEnemy(enemyHealth, win);				}
 
 				state++;
 				playerChoice = 0;
@@ -236,7 +236,7 @@
 
 <p>Are you ready? Press the button to begin...</p>
 
-<button onclick="battleButtons()">Play the Game</button>
+<button class="regular" onclick="battleButtons()">Play the Game</button>
 
 <p id="background"></p>
 <p><br /></p>
@@ -247,6 +247,11 @@
 <p id="attackSetup"></p>
 <p><br /></p>
 
+<p id="pUpdate"></p>
+<p id="player"></p>
+<p id="eUpdate"></p>
+<p id="enemy"></p>
+<p id="win"></p>
 
 <div class="buttons">
 
@@ -264,11 +269,20 @@
 
 </div>
 
-<p id="pUpdate"></p>
-<p id="player"></p>
-<p id="eUpdate"></p>
-<p id="enemy"></p>
-<p id="win"></p>
+<style>
+	.regular {
+	  background-color: #4CAF50;
+	  border: none;
+	  color: white;
+	  padding: 15px 32px;
+	  text-align: center;
+	  text-decoration: none;
+	  display: inline-block;
+	  font-size: 16px;
+	  margin: 4px 2px;
+	  cursor: pointer;
+	}
+	</style>
 
 <hr>
 </html>
