@@ -21,6 +21,7 @@
 
 	//random variables
 	playerChoice = 0;
+	win = 0;
 
 	//player stats
 	health = 30;
@@ -29,7 +30,6 @@
 	attack2 = 10;
 
 	//enemy stats
-
 	enemyHealth = 20;
 	enemyAttack = 5;
 	enemyHeal = 5;
@@ -69,8 +69,8 @@
 						playerGo();
 						break;
 					case 1:
-						alert("enemies turn");
-						state++;
+						enemyGo();
+						break;
 					default:
 						state = 0;						
 						break;
@@ -85,7 +85,7 @@
 	}
 	//player choices go here
 	function playerGo() {
-		
+
 		switch (playerChoice) {
 			case 0:
 
@@ -94,6 +94,11 @@
 			case 1:
 				alert("You chose attack 1");
 				enemyHealth = battleAttack1(enemyHealth, attack1);
+
+				if (enemyHealth <= 0)   {
+					enemyDead(win);
+					newEnemy(enemyHealth, win);				}
+
 				state++;
 				playerChoice = 0;
 				break;
@@ -101,14 +106,26 @@
 			case 2:
 				alert("You chose attack 2");
 				enemyHealth = battleAttack2(enemyHealth, attack2);
+
+				if (enemyHealth <= 0)   {
+					win = enemyDead(win);
+					enemyHealth = newEnemy(enemyHealth, win);	
+				}
+
 				state++;
 				playerChoice = 0;
 
 				break;
 
 			case 3:
-				alert("You chose heal");
+				alert("You chose to heal");
 				health = battleHeal(health, heal);
+
+				if (enemyHealth <= 0)   {
+					win = enemyDead(win);
+					enemyHealth = newEnemy(enemyHealth, win);	
+				}
+
 				state++;
 				playerChoice = 0;
 				break;
@@ -119,22 +136,79 @@
 
 	}
 
+	function enemyGo() {
+		
+		//alert("Enemy's turn")
+		enemyChoice = Math.floor(Math.random() * 2) + 1;
+
+		switch (enemyChoice) {
+			case 0:
+
+				break;
+
+			case 1:
+				alert("The enemy chose to attack");
+				health = enemyAttacks(health, enemyAttack);
+				state++;
+				break;
+
+			case 2:
+			alert("The enemy chose to heal");
+				enemyHealth = enemyHeals(enemyHealth, enemyHeal);
+				state++;
+				break;
+			default:
+				state = 0;
+				break;
+		}
+
+	}
+	
 	function battleAttack1(enemyHealth, attack1) {
 		enemyHealth = enemyHealth - attack1;
-		document.getElementById("test").innerHTML = "The enemy has " + enemyHealth + " health left.";
+		document.getElementById("pUpdate").innerHTML = "Player update:";
+		document.getElementById("player").innerHTML = "The enemy has " + enemyHealth + " health left.";
 		return enemyHealth;
 	}
 
 	function battleAttack2(enemyHealth, attack2) {
 		enemyHealth = enemyHealth - attack2;
-		document.getElementById("test").innerHTML = "The enemy has " + enemyHealth + " health left.";
+		document.getElementById("pUpdate").innerHTML = "Player update:";
+		document.getElementById("player").innerHTML = "The enemy has " + enemyHealth + " health left.";
 		return enemyHealth;
 	}
 
 	function battleHeal(health, heal) {
 		health = health + heal;
-		document.getElementById("test").innerHTML = "Your health is now: " + health;
+		document.getElementById("pUpdate").innerHTML = "Player update:";
+		document.getElementById("player").innerHTML = "Your now have " + health + " health.";
 		return health;
+	}
+	
+	function enemyHeals(enemyHealth, enemyHeal) {
+		enemyHealth = enemyHealth + enemyHeal;
+		document.getElementById("eUpdate").innerHTML = "Enemy update:";
+		document.getElementById("enemy").innerHTML = "The enemy now has " + enemyHealth + " health.";
+		return enemyHealth;
+	}
+
+	function enemyAttacks(health, enemyAttack) {
+		health = health - enemyAttack;
+		document.getElementById("eUpdate").innerHTML = "Enemy update:";
+		document.getElementById("enemy").innerHTML = "You have " + health + " health left.";
+		return health;
+	}
+
+	function enemyDead(win)   {
+		alert("Enemy defeated")
+		win = win + 1;
+		document.getElementById("win").innerHTML = "Congratulations! You've killed " + win + " enemies. A new, stronger, enemy will spawn and take its turn.";
+		return win;
+	}
+
+	function newEnemy(enemyHealth, win)   {
+		enemyHealth = 20 + win;
+		return enemyHealth;
 	}
 
 </script>
@@ -190,7 +264,11 @@
 
 </div>
 
-<p id="test"></p>
+<p id="pUpdate"></p>
+<p id="player"></p>
+<p id="eUpdate"></p>
+<p id="enemy"></p>
+<p id="win"></p>
 
 <hr>
 </html>
