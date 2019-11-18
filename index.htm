@@ -92,7 +92,7 @@
 				break;
 
 			case 1:
-				alert("You chose attack 1");
+				alert("You chose to use Uproot");
 				enemyHealth = battleAttack1(enemyHealth, attack1);
 
 				if (enemyHealth <= 0)   {
@@ -104,7 +104,7 @@
 				break;
 
 			case 2:
-				alert("You chose attack 2");
+				alert("You chose to use Water Cyclone");
 				enemyHealth = battleAttack2(enemyHealth, attack2);
 
 				if (enemyHealth <= 0)   {
@@ -118,7 +118,7 @@
 				break;
 
 			case 3:
-				alert("You chose to heal");
+				alert("You chose to use Healing Light");
 				health = battleHeal(health, heal);
 
 				if (enemyHealth <= 0)   {
@@ -256,15 +256,15 @@
 <div class="buttons">
 
 	<button type="button" class="regular" name="Attack1" id="Attack1" onclick="playerChoice = 1" style="display:none;">
-		Attack1
+		Uproot
 	</button>
 
 	<button type="button" class="regular" name="Attack2" id="Attack2" onclick="playerChoice = 2" style="display:none;">
-		Attack2
+		Water Cyclone
 	</button>
 
 	<button type="button" class="regular" name="Heal" id="Heal" onclick="playerChoice = 3" style="display:none;">
-		Heal
+		Healing Light
 	</button>
 
 </div>
