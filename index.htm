@@ -81,6 +81,7 @@
 					waitFor(gameLoop);
 				}else{
 					//youre dead
+					final(win);
 				}					
 	}
 	//player choices go here
@@ -211,6 +212,10 @@
 		return enemyHealth;
 	}
 
+	function final(win)   {
+		document.getElementById("final").innerHTML = "Oh no! You've been defeated by Dr. Paul U. Shien's evil minions. But at least you took out " + win + " enemies before you were knocked out. Would you like to try again? Refresh the page and try to beat your high score!";
+	}
+
 </script>
 
 <title>The Watershed Warrior</title>
@@ -252,6 +257,7 @@
 <p id="eUpdate"></p>
 <p id="enemy"></p>
 <p id="win"></p>
+<p id="final"></p>
 
 <div class="buttons">
 
